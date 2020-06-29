@@ -1,0 +1,68 @@
+{% extends "siteBase.twig" %}
+
+{% block content %}
+
+<div class="profileWrapper">
+
+    <div id="userPass" class="formWrapper">
+
+        <h3>Change Password</h3>
+
+        <!--http://parsleyjs.org/ -->
+        <form id="loginForm">
+            <ul>
+                <li>
+                    <label for="password">New Password:</label>
+                </li>
+                <li>                
+                    <input type="hidden" name="id" id="userId" value="{{user.id}}">
+                    <input type="password" name="password" id="newUserPassword">
+                </li>
+                <li>
+                    <label for="passwordConfirm">Confirm Password:</label>
+                </li>
+                <li>                
+                    <input type="password" name="passwordConfirm" id="newUserPasswordConfirm">
+                </li>
+                <li>
+                    <input id="passSubmit" type="button" value="Change">
+                </li>            
+            </ul>
+        </form>
+
+    </div>
+
+    <div id="userInfo" class="formWrapper">
+
+        <h3>Update Information</h3>
+
+        <form id="updateForm">
+            <ul>
+                <li>
+                    <label for="name">Full Name:</label>
+                </li>
+                <li>                
+                    <input type="text" name="name" id="newUserName" value="{{user.users_name}}">
+                </li>
+                <li>
+                    <label for="login">Login:</label>
+                </li>
+                <li>                
+                    <input type="text" name="login" id="newUserLogin" value="{{user.user_login}}">
+                </li>
+                <li>
+                    <label for="email">E-mail:</label>
+                </li>
+                <li>                
+                    <input type="text" name="email" id="newUserEmail" value="{{user.email}}">
+                </li>
+                <li>
+                    <input id="updateSubmit" type="button" value="Update">
+                </li>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

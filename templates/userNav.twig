@@ -1,0 +1,27 @@
+<div class="formWrapper">
+
+    {% if user|length > 0 %}
+
+        <ul class="userMenu">            
+            <li>
+                Hello,<br><span id="greetingName">{{user.users_name}}</span>
+            </li>
+            <li>
+                <a href="dashboard.php">My Dashboard</a>
+            </li>
+            <li>
+                <a href="profile.php">My Profile</a>
+            </li>
+            <li>
+                <a href="logout.php">Logout</a>
+            </li>
+
+        </ul>
+
+    {% else %}
+
+        {% include 'login.twig' %}
+
+    {% endif %}
+
+</div>

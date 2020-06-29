@@ -1,0 +1,631 @@
+// No margins and paddings
+* {
+    margin: 0;
+    padding: 0;
+}
+
+// Monochromatic color scheme:
+@color0: white;
+@color1: #DBE5FF;
+@color2: #678FFE;
+@color3: #0247FE;
+@color4: #012998;
+@color5: #091534;
+
+// Widescreen breakpoint:
+@widescreen: 814px;
+
+// Site specific font
+@font-face {
+    font-family: kohelet;
+    src: url(../fonts/Kohelet.ttf);
+}
+
+// Making body a column flexbox
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+// Header style
+header {
+    background-color: @color2;
+    display: grid;
+    grid-template-columns: 3em auto 3em 3em;
+    text-align: center;
+    span {
+        padding: 0.5em;
+
+        &:not(.logo) {
+            cursor: pointer;
+        }
+        &.logo > a > img {
+            height: 25px;
+            cursor: pointer;
+        }
+    }
+
+    .titleText {
+        .hide();
+    }
+}
+
+// Mobile Menu Ruleset
+@menu-ruleset: {
+    background-color: @color1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    transition-duration: 1s;
+    overflow-y: auto;
+    
+    span {
+        cursor: pointer;
+        padding: 0.5em;
+    }
+};
+
+h1 {
+    font-family: kohelet, "Times New Roman", Times, serif;
+    font-size: 1.5em;
+    text-align: right;
+    padding-right: 0.5em;
+}
+
+h2 {
+    font-size: 1.3em;
+    text-align: center;
+}
+
+h3 {
+    font-size: 1.1em;
+    text-align: center;
+    margin: 0.3em;
+}
+
+h4 {
+    display: inline-block;
+    margin-right: 0.5em;
+}
+
+// Site Menu
+.siteNav {
+    @menu-ruleset();
+    left: -100%;
+    font-size: 1.2em;
+
+    ul {
+        padding-left: 1em;
+        list-style-type: none;
+
+        // List
+        .category {
+
+            span {
+                padding: 0;
+            }
+            
+            .subcategories {
+                padding-left: 1.5em;
+            }
+        }
+    }
+}
+
+// Display Site Menu
+.displaySiteNav {
+    left:0;
+    transition-duration: 1s;
+}
+
+//User Menu
+.userNav {
+    @menu-ruleset();
+    right: -100%;
+}
+
+// Display user menu
+.displayUserNav {
+    right:0;
+    transition-duration: 1s;
+}
+
+// All links will have the same layout
+a, a:visited {
+    text-decoration: none;
+    color: @color3;
+}
+a:hover {
+    color: @color5;
+}
+
+// Search bar
+#search {
+
+    .searchWrapper {
+        background-color: @color0;
+        display: grid;
+        grid-template-columns: 3em 1fr 3em;
+        text-align: center;
+
+        input[type="text"]{
+            border: none;
+        } 
+        span:not(.help-block) {
+            cursor: pointer;
+            padding: 0.5em;
+        }
+
+        &.has-error {
+            grid-template-rows: 1fr 1fr;
+
+            span:last-child {
+                grid-column: 1 / end;
+            }
+        }
+    }
+}
+
+// Inner content
+.content {
+    background-color: @color1;
+    flex-grow: 1;
+    padding: 0.2em;
+
+    > p {
+        text-align: center;
+    }
+}
+
+
+// Footer
+footer {
+    background-color: @color5;
+    color: @color1;
+    text-align: center;
+    p {
+        padding: 0.5em;
+    }
+}
+
+// Hide class
+.hide {
+    display: none;
+}
+
+// Hidden class
+.hidden {
+    visibility: hidden;
+}
+
+// Item list style
+.itemWrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+// Item layout
+.item {
+
+    background-color: @color0;
+    border: 1px solid @color5;
+    margin: 0.2em 0 0.2em 0;
+    padding: 0.2em;
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+    "title title"
+    "image contentWrapper"
+    "image buttons";
+    align-items: stretch;
+
+    ul {
+        list-style-type: none;
+    }
+
+    h3 {
+        grid-area: title;
+    }
+
+    .itemContentWrapper {
+        grid-area: contentWrapper;
+        padding: 0.2em;
+    }
+
+    .buttons {
+        grid-area: buttons;
+        text-align: right;
+        align-self: end;
+    }
+
+    .cover {
+
+        grid-area: image;
+
+        img {
+            max-width: 100px;
+        }
+    }
+}
+
+.itemDetail {
+
+    background-color: @color0;
+    padding: 0.2em;
+    border: 1px solid @color5;
+
+    .cover {
+        text-align: center;
+    }
+
+    div {
+        margin-bottom: 0.2em;
+    }
+
+    ul {
+        list-style-type: none;
+        li:not(:first-child) {
+            padding-left: 1em;
+        }
+    }
+
+    p {
+        text-indent: 1em;
+        text-align: justify;
+    }
+}
+
+// Hiding user register by default
+#userRegister {
+    .hide;
+}
+
+
+// Form wrapper class
+.formWrapper {
+
+    text-align: center;
+    padding: 1em;
+
+    > div {
+        margin-top: 1em;
+    }
+
+    > input {
+        width: 40%;
+    }
+
+    ul {
+        text-align: left;
+        padding: 1em;
+        list-style-type: none;
+
+        li {
+            input {
+                width: 100%;
+                height: 2em;
+                margin-bottom: 0.5em;
+            }
+
+            textarea {
+                width: 100%;
+                margin-bottom: 0.5em;
+            }
+        }
+
+        &.userMenu {
+            font-size: 1.2em;
+            li {
+                padding: 0.3em;
+            }
+        }
+       
+    }
+
+}
+
+// Input button style
+input[type="button"] {
+    border: none;
+    background-color: @color2;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0.3em;
+}
+
+// Span button style {
+
+.button {
+    border: none;
+    background-color: @color2;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 0.2em;
+    color: @color5;
+    display: inline-block;
+    text-align: center;
+}
+
+
+// Contact map class style (external content from Bing)
+.map {
+    text-align: center;
+
+    div {
+        width: 100% !important;
+    }
+}
+
+// Table styles
+table.userItems {
+    text-align: center;
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1em 0 1em 0;
+
+    th {       
+        white-space: nowrap;
+        padding: 0.1em;
+    }
+
+    td {
+        padding: 0.2em 0;
+    }
+
+    tbody {
+        tr:first-child {
+            background-color: @color2;
+        }
+        tr:nth-child(even) {
+            background-color: @color0;
+        }
+
+        span.cancelReservation {
+            color: @color3;
+            cursor: pointer;
+        }
+    }
+
+    .issued {
+        display: none;
+    }
+}
+
+//Message box style
+#message {
+    border: 5px solid @color5;
+    border-radius: 5px;
+    position: fixed;
+    margin: auto;
+    width: 80vW;
+    height: 50vH;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: @color0;
+    transition: z-index 1s;
+
+    .messageHeader {
+        text-align: right;
+        padding: 0.5em;
+        cursor: pointer;
+    }
+
+    .messageText {
+        padding: 0 1em 0 1em;
+        overflow-y: auto;
+    }
+}
+
+// Hiding via z-index
+.hideMessage {
+    z-index: -1;
+}
+
+// Display via z-index
+.showMessage {
+    z-index: 2;
+}
+
+//Pagination style
+.paginationWrapper {
+
+    font-size: 1.1em;
+    text-align: center;
+
+    .pagination {
+        list-style-type: none;
+
+        li {
+            display: inline;
+            padding: 0.5em;
+        }
+    }
+}
+
+// Site above mobile breakpoint
+@media screen and (min-width: @widescreen) {
+
+    // Changing to horizontal menu
+    #siteNav {
+        position: static;
+        height: auto;
+
+        > span {
+            display: none;
+        }
+
+        > ul {
+            background-color: @color0;
+            padding: 0.5em;
+            display: grid;
+            grid-auto-flow: column;
+            padding-left: 0;
+            justify-items: center;
+        }
+
+        > ul > li {
+            display: inline-block;
+            &.category {
+                
+                span {
+                    display: none;
+                }
+            }
+            &.category:hover {
+                .subcategories {
+                    
+                    display: block;
+                }
+                
+            }
+        }
+
+        .subcategories {
+            padding: 0.5em 1.5em;
+            background-color: @color0;
+            position: absolute;
+            //border: 1px solid @color5;
+        }
+    }
+
+    // Changing header
+    header {
+
+        grid-template-columns: 100px 1fr 280px;
+        align-items: center;
+
+        p {
+            font-size: 2em;
+        }
+
+        #logo {
+            img {
+                height: 50px;
+            }
+        }
+    
+        #showMenu, #showSearch, #showUserMenu {
+            .hide();
+        }
+
+        .titleText {
+            display: block;
+        }
+
+    }
+    
+
+    // Changing content list flex configuration
+    .itemWrapper {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+
+        .item {
+            width: 250px;
+            margin: 10px;
+        }
+    }
+
+    // Setting content div
+    .content {
+        padding: 1em;
+        display: grid;
+        grid-template-columns: 1fr 200px;
+        grid-template-areas: "left right";
+
+        .contentWrapper {
+            padding-right: 1em;
+        }
+
+        h1 {
+            text-align: center;
+        }
+    }
+
+    // Displaying search
+    #search {
+        display: block;
+        position: absolute;
+        right: 20px;
+        top: 16px;
+        width: 300px;
+
+        .searchWrapper {
+            grid-template-columns: 1fr 3em;
+
+            input {
+                padding-left: 1em;
+            }
+
+            &.has-error {
+                grid-template-rows: 1fr 20px;
+            }
+
+            span:not(.help-block) {
+                padding: 0.3em;
+            }
+
+        }
+
+        #closeSearch {
+            .hide();
+        }
+
+        .help-block {
+            font-size: 0.9em;
+        }
+    }
+
+    // Displaying user nav
+    #userNav {
+        position: static;
+        height: auto;
+        //width: 200px;
+        transition-duration: 0;
+        grid-area: right;
+        z-index: inherit;
+
+        #closeUserNav {
+            .hide();
+        }
+
+        .formWrapper {
+            padding-left: 0;
+            padding-right: 0;
+            border: 1px solid @color5;
+            background-color: @color0;
+
+            .userMenu {
+                font-size: 1em;
+            }
+        }
+    }
+
+    // Contact Page Layout
+    .contactWrapper {
+        display: grid;
+        grid-template-columns: 220px 1fr;
+        justify-items: center;
+
+        .formWrapper ul {
+            padding: 0;
+        }
+
+        .map {
+            margin-top: 1em;
+        }
+    }
+
+    // Profile Page Layout
+    .profileWrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}

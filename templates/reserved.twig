@@ -1,0 +1,30 @@
+<h3>Reserved Items</h3>
+<table class="userItems">
+        <tr>
+            <th>Item#</th>
+            <th>Title</th>
+            <th>Reserved Date</th>
+            <th>Cancel</th>
+        </tr>
+    
+        {% if reserved|length > 0 %}
+    
+            {% for item in reserved %}
+    
+                <tr>
+                    <td><a href="item.php?itemid={{item.item_id}}">{{item.item_id}}</a></td>
+                    <td>{{item.title}}</td>
+                    <td>{{item.reserved_date|date("m/d/Y")}}</td>
+                    <!-- implement cancel reservation {{item.reserved_id}} -->
+                    <td><span itemId={{item.item_id}} class="fas fa-minus-circle cancelReservation"></span></td>
+                </tr>
+    
+            {% endfor %}
+    
+        {% else %}
+            <tr>
+                <td colspan="4">No item reserved</td>
+            </tr>
+    
+        {% endif %}
+    </table>

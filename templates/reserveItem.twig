@@ -1,0 +1,27 @@
+{% if user|length > 0 %}
+
+    {% set reserved = 0 %}
+
+    {% if user.reserved_items|length > 0 %}
+
+        {% for i in user.reserved_items if i == item.item_id %}
+
+            {% set reserved = 1 %}
+
+        {% endfor %}
+
+    {% endif %}
+
+    {% if reserved == 1 %}
+        <span class="button detail cancel reservation" calltoaction="cancelReserve" itemId={{item.item_id}}>Cancel</span>
+    {% else %}
+        <span class="button detail reserve reservation" calltoaction="reserveItem" itemId={{item.item_id}}>Reserve</span>
+    {% endif %}
+
+{% else %}
+
+    Log in to reserve.
+
+{% endif %}
+
+

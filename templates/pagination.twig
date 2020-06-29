@@ -1,0 +1,47 @@
+{% if pagination.totalPages > 1 %}
+
+    <div class="paginationWrapper">
+
+        <p>Page #</p>
+
+        <ul class="pagination">
+
+            {% set posStart = pagination.page - 2 %}
+            {% set posEnd = pagination.page + 2 %}
+
+            {% if pagination.page != 1 %}
+
+                <li><a href="{{pagination.baseLink}}&page=1"><< First</a></li>
+
+            {% else %}
+
+                <li><< First</li> 
+
+            {% endif %}
+
+            {% for i in posStart..posEnd if i >= 1 and i <= pagination.totalPages %}
+
+                {% if i != pagination.page %}
+                    <li><a href="{{pagination.baseLink}}&page={{i}}">{{i}}</a></li>
+                {% else %}
+                    <li>{{i}}</li>
+                {% endif %}
+
+            {% endfor %}
+
+
+            {% if pagination.page != pagination.totalPages and pagination.page < pagination.totalPages %}
+
+                <li><a href="{{pagination.baseLink}}&page={{pagination.totalPages}}">Last >></a></li>
+
+            {% else %}
+
+                <li>Last >></li>
+
+            {% endif %}
+
+        </ul>
+
+    </div>
+
+{% endif %}

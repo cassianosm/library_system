@@ -1,0 +1,53 @@
+{% extends "siteBase.twig" %}
+
+{% block content %}
+
+    <div class="itemDetail">   
+                
+        {% if item|length > 0 %}
+
+            <h3>{{item.title}}</h3>
+
+            <div class="cover">
+                <img src=" {{item.image_url}}" alt="{{item.title}} Cover">
+            </div>
+
+            <div class="isbn"><h4>ISBN:</h4>{{item.isbn}}</div>
+
+            <div class="type"><h4>Type:</h4>{{item.types_name}}</div>
+        
+            <div class="year"><h4>Year:</h4>{{item.year_published}}</div>
+        
+            {% set authors = item.item_authors|split(',') %}
+
+            {% if item.item_authors != "" %}
+                <ul class="authors">
+                    <li><h4>Author(s):</h4></li>
+                    {% for author in authors %}
+                        <li>{{author}}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+            <div class="publisher"><h4>Publisher:</h4>{{item.publisher_name}}</div>
+
+            <div class="total"><h4>Total Items in Library:</h4>{{item.quantity}}</div>
+
+            <div class="available"><h4>Available:</h4>{{item.available}}</div>
+
+            <div>{% include 'reserveItem.twig' %}</div>
+
+            <div class="description">
+                <h4>Description:</h4>
+                <p>{{item.item_description}}</p>
+            </div>
+
+        {% else %}
+
+            <p>Item not found</p>
+
+        {% endif %}
+        
+    </div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+<ul>
+    <li>
+        <a href="index.php">Home</a>
+    </li>
+
+    {% for category in categories %}
+
+        <li class="category">
+            
+            <a href="categories.php?categoryid={{category.category_id}}&categoryname={{category.category_name|url_encode}}">{{category.category_name}}</a>
+
+            {% set subcategories = category.subcategories|split(";") %}
+
+            {% if category.subcategories != "" %}
+                <span class="fas fa-angle-down"></span>
+                <ul class="subcategories hide">
+                    {% for subcategory in subcategories %}
+
+                        {% set sub = subcategory|split(",") %}
+                        <li class="subcategory"><a href="categories.php?categoryid={{sub[0]}}&categoryname={{sub[1]|url_encode}}">{{sub[1]}}</a></li>
+                        
+                    {% endfor %}
+                </ul>
+            {% endif %}
+
+        </li>
+    {% endfor %}
+    
+    <li>
+        <a href="contact.php">Contact</a>
+    </li>
+</ul>

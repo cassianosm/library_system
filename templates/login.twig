@@ -1,0 +1,76 @@
+<input id="loginButton" type="button" onclick="displayForms('userLogin')" value="Login" disabled>
+<input id="registerButton" type="button" onclick="displayForms('userRegister')" value="Register" >
+
+<div id="userLogin">
+
+    <h3>Login</h3>
+
+    <!--http://parsleyjs.org/ -->
+    <form id="loginForm">
+        <ul>
+            <li>
+                <label for="login">* Login / E-mail:</label>
+            </li>
+            <li>                    
+                <input type="text" name="login" id="loginInput">
+            </li>
+            <li>
+                <label for="password">* Password:</label>
+            </li>
+            <li>                    
+                <input type="password" name="password" id="passwordInput">
+            </li>
+            <li>
+                <input id="loginSubmit" type="button" value="Login">
+            </li>
+            
+        </ul>
+    </form>
+
+    <p>* Required</p>
+
+</div>
+
+<div id="userRegister">
+
+    <h3>Register</h3>
+
+    <form id="registerForm">
+        <ul>
+            <li>
+                <label for="name">* Full Name:</label>
+            </li>
+            <li>
+                <input type="text" name="name" id="newUserName">
+            </li>
+            <li><label for="login">* Login:</label></li>
+            <li>                    
+                <input type="text" name="login" id="newUserLogin">
+            </li>
+            <li>
+                <label for="email">* E-mail:</label>
+            </li>
+            <li> 
+                <input type="text" name="email" id="newUserEmail">
+            </li>
+            <li>
+                <label for="password">* Password:</label>
+            </li>
+            <li> 
+                <input type="password" name="password" id="newUserPassword">
+            </li>
+            <li>
+                <label for="passwordConfirm">* Confirm Password:</label>
+            </li>
+            <li>                    
+                <input type="password" name="passwordConfirm" id="newUserPasswordConfirm">
+            </li>
+            <li>
+                <input id="registerSubmit" type="button" value="Register">
+            </li>
+        </ul>
+    </form>
+
+    <p>* Required</p>
+        
+</div>

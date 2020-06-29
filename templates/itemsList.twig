@@ -1,0 +1,56 @@
+<div class="itemWrapper">
+
+    {% if items.num_rows > 0 %}
+
+        {% for item in items %}
+
+            <div class="item">
+
+                <h3>{{item.title}}</h3>
+
+                <div class="cover">
+                    <img src=" {{item.image_url}}" alt="{{item.title}} Cover">
+                </div>
+
+                <div class="itemContentWrapper">
+
+                    {% if item.isbn != "" %}
+
+                        <p class="isbn"><h4>ISBN:</h4>{{item.isbn}}</p>
+
+                    {% endif %}
+                
+                    <p class="year"><h4>Year:</h4>{{item.year_published}}</p>
+
+                    {% set authors = item.item_authors|split(',') %}
+                    <!--{{authors|length}}
+                    {{item.item_authors}}-->
+                    {% if item.item_authors != "" %}
+                        <ul class="authors">
+                            <li><h4>Author(s):</h4></li>
+                            {% for author in authors %}
+                                <li>{{author}}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+
+                </div>
+
+                <div class="buttons">
+                    {% include 'reserveItem.twig' %}
+                    <a href="item.php?itemid={{item.item_id}}"><span class="button detail">Details</span></a>
+                </div>
+
+            </div>
+
+        {% endfor %}
+
+    {% else %}
+
+        <div class="noItem">
+            <p>No item found</p>
+        </div>
+
+    {% endif %}
+
+</div>

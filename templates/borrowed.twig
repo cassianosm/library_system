@@ -1,0 +1,31 @@
+<h3>Borrowed Items</h3>
+<table class="userItems">
+    <tr>
+        <th>Item#</th>
+        <th class="title">Title</th>
+        <th class="issued">Issued Date</th>
+        <th class="due">Due Date</th>
+        <th class="returned">Returned Date</th>
+    </tr>
+
+    {% if borrowed|length > 0 %}
+
+        {% for item in borrowed %}
+
+            <tr>
+                <td><a href="item.php?itemid={{item.item_id}}">{{item.item_id}}</a></td>
+                <td class="title">{{item.title}}</td>
+                <td class="issued">{{item.issued_date|date("m/d/Y")}}</td>
+                <td class="due">{{item.due_date|date("m/d/Y")}}</td>
+                <td class="returned">{{item.returned_date|date("m/d/Y")}}</td>
+            </tr>
+
+        {% endfor %}
+
+    {% else %}
+        <tr>
+            <td colspan="5">No item borrowed</td>
+        </tr>
+
+    {% endif %}
+</table>

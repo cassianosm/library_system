@@ -1,0 +1,6 @@
+{
+    "require": {
+        "twig/twig": "^2.0",
+        "respect/validation": "^1.1"
+    }
+}
